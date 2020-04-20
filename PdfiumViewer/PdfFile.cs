@@ -292,7 +292,9 @@ namespace PdfiumViewer
         {
             using (var pageData = new PageData(_document, _form, page))
             {
-                NativeMethods.FPDF_PageToDevice(
+				int deviceX, deviceY;
+
+				NativeMethods.FPDF_PageToDevice(
                     pageData.Page,
                     0,
                     0,
@@ -301,8 +303,8 @@ namespace PdfiumViewer
                     0,
                     point.X,
                     point.Y,
-                    out var deviceX,
-                    out var deviceY
+                    out deviceX,
+                    out deviceY
                 );
 
                 return new Point(deviceX, deviceY);
@@ -313,7 +315,9 @@ namespace PdfiumViewer
         {
             using (var pageData = new PageData(_document, _form, page))
             {
-                NativeMethods.FPDF_PageToDevice(
+				int deviceX1, deviceY1, deviceX2, deviceY2;
+
+				NativeMethods.FPDF_PageToDevice(
                     pageData.Page,
                     0,
                     0,
@@ -322,8 +326,8 @@ namespace PdfiumViewer
                     0,
                     rect.Left,
                     rect.Top,
-                    out var deviceX1,
-                    out var deviceY1
+                    out deviceX1,
+                    out deviceY1
                 );
 
                 NativeMethods.FPDF_PageToDevice(
@@ -335,8 +339,8 @@ namespace PdfiumViewer
                     0,
                     rect.Right,
                     rect.Bottom,
-                    out var deviceX2,
-                    out var deviceY2
+                    out deviceX2,
+                    out deviceY2
                 );
 
                 return new Rectangle(
@@ -352,7 +356,9 @@ namespace PdfiumViewer
         {
             using (var pageData = new PageData(_document, _form, page))
             {
-                NativeMethods.FPDF_DeviceToPage(
+				double deviceX, deviceY;
+
+				NativeMethods.FPDF_DeviceToPage(
                     pageData.Page,
                     0,
                     0,
@@ -361,8 +367,8 @@ namespace PdfiumViewer
                     0,
                     point.X,
                     point.Y,
-                    out var deviceX,
-                    out var deviceY
+                    out deviceX,
+                    out deviceY
                 );
 
                 return new PointF((float)deviceX, (float)deviceY);
@@ -373,7 +379,8 @@ namespace PdfiumViewer
         {
             using (var pageData = new PageData(_document, _form, page))
             {
-                NativeMethods.FPDF_DeviceToPage(
+				double deviceX1, deviceY1, deviceX2, deviceY2;
+				NativeMethods.FPDF_DeviceToPage(
                     pageData.Page,
                     0,
                     0,
@@ -382,8 +389,8 @@ namespace PdfiumViewer
                     0,
                     rect.Left,
                     rect.Top,
-                    out var deviceX1,
-                    out var deviceY1
+                    out deviceX1,
+                    out deviceY1
                 );
 
                 NativeMethods.FPDF_DeviceToPage(
@@ -395,8 +402,8 @@ namespace PdfiumViewer
                     0,
                     rect.Right,
                     rect.Bottom,
-                    out var deviceX2,
-                    out var deviceY2
+                    out deviceX2,
+                    out deviceY2
                 );
 
                 return new RectangleF(
@@ -456,13 +463,15 @@ namespace PdfiumViewer
 
         private RectangleF GetBounds(IntPtr textPage, int index)
         {
-            NativeMethods.FPDFText_GetCharBox(
+			double left, right, bottom, top;
+
+			NativeMethods.FPDFText_GetCharBox(
                 textPage,
                 index,
-                out var left,
-                out var right,
-                out var bottom,
-                out var top
+                out left,
+                out right,
+                out bottom,
+                out top
             );
 
             return new RectangleF(

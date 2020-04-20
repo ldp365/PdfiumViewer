@@ -2,7 +2,7 @@
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("PdfViewer")]
+[assembly: AssemblyTitle("PdfViewer扩展:WeChat:ldp365")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Pieter van Ginkel")]
@@ -15,5 +15,5 @@ using System.Runtime.InteropServices;
 [assembly: CLSCompliant(true)]
 [assembly: Guid("ca63710b-8bc7-4fc5-8c39-210bacf591e8")]
 
-[assembly: AssemblyVersion("2.13.0.0")]
-[assembly: AssemblyFileVersion("2.13.0.0")]
+[assembly: AssemblyVersion("2.13.19.12270")]
+[assembly: AssemblyFileVersion("2.13.19.12270")]
